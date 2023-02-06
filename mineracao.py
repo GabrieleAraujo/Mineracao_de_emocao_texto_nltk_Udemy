@@ -23,4 +23,25 @@ base = [('eu sou admirada por muitos','alegria'),
         ('eu tenho muito medo dele', 'medo'),
         ('estou com medo do resultado dos meus testes', 'medo')]
 
-print(base[1])
+#print(base)
+
+#Lista de Stopwords a serem removidas
+stopwords = ['a', 'agora', 'algum', 'alguma', 'aquele', 'aqueles', 'de', 'deu', 'do', 'e', 'estou', 'esta', 'esta',
+             'ir', 'meu', 'muito', 'mesmo', 'no', 'nossa', 'o', 'outro', 'para', 'que', 'sem', 'talvez', 'tem', 'tendo',
+             'tenha', 'teve', 'tive', 'todo', 'um', 'uma', 'umas', 'uns', 'vou']
+
+#Usando stopwords NLTK - Portuguese
+stopwords_nltk = nltk.corpus.stopwords.words('portuguese')
+#print(stopwords_nltk)
+
+
+def removestopwords(texto):
+        frases = []
+        for palavras, emocao in texto:
+                #* split quebra cada palavra com espaço em branco; verifica se palavra da base está na lista de stopwords
+                semastop = [p for p in palavras.split() if p not in stopwords_nltk]
+                frases.append((semastop, emocao))
+        return frases
+
+print(removestopwords(base))    
+
